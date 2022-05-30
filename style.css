@@ -1,0 +1,45 @@
+html,body {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 40vw black;
+}
+
+h1 {
+    font-style: italic;
+}
+
+#board button {
+    position: relative;
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 0;
+    background-color: lightgrey;
+}
+#board button:after {
+    content:"";
+    /* pointer-events: none; */
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    opacity: 1;
+    background-color: lightgrey;
+    
+    transition: all 1s;
+    /* -webkit-transition: opacity 1s; */
+}
+#board button.filled:after {
+    opacity: 0;
+}
