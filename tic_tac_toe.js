@@ -7,6 +7,7 @@
     And now computer looks for winning move before looking for a blocking move.  And game announces when it's a draw.
 
     There is still a lot of refactoring to be done.  In my last push, I wrote a lot of redundant code to get it working.
+
 */
 
 let board = [
