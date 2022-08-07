@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     box-shadow: inset 0 0 40vw black;
-    border-bottom: 2px solid yellow;
+    border-bottom: 2px solid orange;
 }
 
 h1 {
@@ -21,11 +21,12 @@ h1 {
 #board button {
     position: relative;
     font-size: 4rem;
+    color: #222;
     width: 6rem;
     height: 6rem;
     max-width: 28vw;
     max-height: 28vw;
-    text-align: center;
+    /* text-align: center; */
     vertical-align: middle;
     line-height: 0;
     background-color: lightgrey;
@@ -40,6 +41,7 @@ h1 {
     height:100%;
     opacity: 1;
     background-color: lightgrey;
+    text-align: center;
     
     transition: all 1s;
     /* -webkit-transition: opacity 1s; */
