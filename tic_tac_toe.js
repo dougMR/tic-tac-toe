@@ -30,11 +30,11 @@ const initHTML = () => {
         colNum = 0;
         for (const col of row) {
             // Give buttons data-row and data-col attributes for targeting them later
-            html += `<button id="b${buttonNum}" data-row="${rowNum}" data-col="${colNum}"  class="${
+            html += `<div class="button" id="b${buttonNum}" data-row="${rowNum}" data-col="${colNum}"  class="${
                 col ? "filled" : ""
             }" onclick="buttonClicked(event)">${
                 col || "&nbsp;&nbsp;"
-            }</button>`;
+            }</div>`;
 
             buttonNum++;
             colNum++;
@@ -55,7 +55,7 @@ const updateHTML = () => {
         colNum = 0;
         for (const col of row) {
             const btn = document.querySelector(
-                `button[data-row="${rowNum}"][data-col="${colNum}"]`
+                `.button[data-row="${rowNum}"][data-col="${colNum}"]`
             );
             btn.innerHTML = col || "&nbsp;&nbsp;";
             // 'filled' class fades in mark
