@@ -439,10 +439,10 @@ const checkGameStatusRefactored = () => {
     winner = board[0][0];
     console.log("winner: ", winner);
     for (let diagonalIndex = 0; diagonalIndex < 3; diagonalIndex++) {
-        console.log(
-            `board[${diagonalIndex}][${diagonalIndex}]: `,
-            board[diagonalIndex][diagonalIndex]
-        );
+        // console.log(
+        //     `board[${diagonalIndex}][${diagonalIndex}]: `,
+        //     board[diagonalIndex][diagonalIndex]
+        // );
         if (board[diagonalIndex][diagonalIndex] !== winner) {
             winner = null;
             break;
@@ -466,7 +466,7 @@ const checkGameStatusRefactored = () => {
     //     }
     // }
     if (!winner) {
-        //    In Class Solution for backwards diagonal
+        //    In-Class Solution for backwards diagonal
         winner = board[0][2];
         for (let rowIndex = 1; rowIndex < 3; rowIndex++) {
             let colIndex = 2 - rowIndex;
