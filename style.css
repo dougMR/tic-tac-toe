@@ -19,16 +19,19 @@ h1 {
 }
 
 #board .button {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     font-size: 4rem;
+    font-family: sans-serif;
     color: #222;
     width: 6rem;
     height: 6rem;
     max-width: 28vw;
     max-height: 28vw;
     /* text-align: center; */
-    vertical-align: middle;
+    /* vertical-align: middle; */
     line-height: 0;
     background-color: lightgrey;
     margin: 0.2rem;
