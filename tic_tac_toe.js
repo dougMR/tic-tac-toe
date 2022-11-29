@@ -15,6 +15,7 @@ let board = [
     ["", "", ""],
     ["", "", ""],
 ];
+let winningTiles = [];
 // TODO: player choose mark
 let playerMark = "X";
 let computerMark = "O";
@@ -45,7 +46,7 @@ const initHTML = () => {
     html += `</div>`;
     document.getElementById("board-container").innerHTML = html;
 };
-const updateHTML = () => {
+const updateHTML = (isDraw) => {
     // Add marks to the HTML board, based on the board array
     // Updating existing elements rather than re-writing the html,
     // so that the marks can fade in using css transition
@@ -60,6 +61,17 @@ const updateHTML = () => {
             btn.innerHTML = col || "&nbsp;&nbsp;";
             // 'filled' class fades in mark
             if (col) btn.classList.add("filled");
+            if(isDraw){
+                btn.classList.add("draw");
+            }else if(winningTiles.some( indices => indices[0] === rowNum && indices[1]===colNum)){
+                // This tile is part of the winning line
+                btn.classList.add("winner");
+            } else {
+                // Remove winner style in case it was marked a winner last game
+                btn.classList.remove("winner");
+                // Remove draw style in case we just finished a draw game
+                btn.classList.remove("draw");
+            }
             colNum++;
         }
         rowNum++;
@@ -403,6 +415,7 @@ const checkFor2of3inLine = (threeSquares, mark) => {
 };
 
 const checkGameStatusRefactored = () => {
+    winningTiles = [];
     // TODO: Check if board is filld and game is a draw
     //  returns winning mark, null, or "draw"
     // check all rows to see if they are all of one symbol
@@ -417,6 +430,7 @@ const checkGameStatusRefactored = () => {
         }
         if (winner) {
             // If all 3 columns were the same, and not "", markToCheck has a value
+            winningTiles = [[row,0],[row,1],[row,2]];
             return winner;
         }
     }
@@ -431,6 +445,7 @@ const checkGameStatusRefactored = () => {
             }
         }
         if (winner) {
+            winningTiles = [[rowIndex,0],[rowIndex,1],[rowIndex,2]];
             return winner;
         }
     }
@@ -475,6 +490,13 @@ const checkGameStatusRefactored = () => {
                 break;
             }
         }
+        if(winner){
+            // 2,0 to 0,2 was teh winner
+            winningTiles = [[2,0],[1,1],[0,2]];
+        }
+    } else {
+        // 0,0 to 2,2 was the winner
+        winningTiles = [[0,0],[1,1],[2,2]];
     }
 
     if (winner) {
@@ -507,6 +529,7 @@ const alertWinnerAndClearBoard = (winner) => {
             ["", "", ""],
             ["", "", ""],
         ];
+        winningTiles=[];
         updateHTML();
     }, 100);
 };
@@ -529,6 +552,7 @@ const buttonClicked = (event) => {
     // let winner = checkForWinner();
     let winner = checkGameStatusRefactored();
     if (winner === "draw") {
+        updateHTML(true);
         alertWinnerAndClearBoard(winner);
     } else if (!winner) {
         setTimeout(() => {

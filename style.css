@@ -55,3 +55,9 @@ h1 {
 #board .button.filled:after {
     opacity: 0;
 }
+#board .button.winner {
+    background-color: lime;
+}
+#board .button.draw {
+    background-color:orangered;
+}
