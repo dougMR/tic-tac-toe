@@ -33,9 +33,7 @@ const initHTML = () => {
             // Give buttons data-row and data-col attributes for targeting them later
             html += `<div class="button" id="b${buttonNum}" data-row="${rowNum}" data-col="${colNum}"  class="${
                 col ? "filled" : ""
-            }" onclick="buttonClicked(event)">${
-                col || "&nbsp;&nbsp;"
-            }</div>`;
+            }" onclick="buttonClicked(event)">${col || "&nbsp;&nbsp;"}</div>`;
 
             buttonNum++;
             colNum++;
@@ -61,9 +59,13 @@ const updateHTML = (isDraw) => {
             btn.innerHTML = col || "&nbsp;&nbsp;";
             // 'filled' class fades in mark
             if (col) btn.classList.add("filled");
-            if(isDraw){
+            if (isDraw) {
                 btn.classList.add("draw");
-            }else if(winningTiles.some( indices => indices[0] === rowNum && indices[1]===colNum)){
+            } else if (
+                winningTiles.some(
+                    (indices) => indices[0] === rowNum && indices[1] === colNum
+                )
+            ) {
                 // This tile is part of the winning line
                 btn.classList.add("winner");
             } else {
@@ -430,7 +432,11 @@ const checkGameStatusRefactored = () => {
         }
         if (winner) {
             // If all 3 columns were the same, and not "", markToCheck has a value
-            winningTiles = [[row,0],[row,1],[row,2]];
+            winningTiles = [
+                [row, 0],
+                [row, 1],
+                [row, 2],
+            ];
             return winner;
         }
     }
@@ -445,7 +451,11 @@ const checkGameStatusRefactored = () => {
             }
         }
         if (winner) {
-            winningTiles = [[rowIndex,0],[rowIndex,1],[rowIndex,2]];
+            winningTiles = [
+                [rowIndex, 0],
+                [rowIndex, 1],
+                [rowIndex, 2],
+            ];
             return winner;
         }
     }
@@ -490,13 +500,21 @@ const checkGameStatusRefactored = () => {
                 break;
             }
         }
-        if(winner){
+        if (winner) {
             // 2,0 to 0,2 was teh winner
-            winningTiles = [[2,0],[1,1],[0,2]];
+            winningTiles = [
+                [2, 0],
+                [1, 1],
+                [0, 2],
+            ];
         }
     } else {
         // 0,0 to 2,2 was the winner
-        winningTiles = [[0,0],[1,1],[2,2]];
+        winningTiles = [
+            [0, 0],
+            [1, 1],
+            [2, 2],
+        ];
     }
 
     if (winner) {
@@ -529,7 +547,7 @@ const alertWinnerAndClearBoard = (winner) => {
             ["", "", ""],
             ["", "", ""],
         ];
-        winningTiles=[];
+        winningTiles = [];
         updateHTML();
     }, 100);
 };
